@@ -21,12 +21,17 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "resolveJsonModule": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks":false,
+    "strictPropertyInitialization": false,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+    // TODO(gkalpak): Fix the code and enable this (i.e. switch from `fullTemplateTypeCheck` to `strictTemplates`).
+    "fullTemplateTypeCheck": true, // "strictTemplates": true
+  },
 }
