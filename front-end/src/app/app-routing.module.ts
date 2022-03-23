@@ -7,7 +7,7 @@ import { Sample1Component } from './sample1/sample1.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'evaluate',
     pathMatch: 'full',
   },
   {
@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () =>
       import('./modules/register/register.module').then(m => m.RegisterModule),
+  },
+  {
+    path: 'evaluate',
+    loadChildren: () =>
+      import('./modules/evaluate/evaluate.module').then(m => m.EvaluateModule),
   },
   {
     path: '**',

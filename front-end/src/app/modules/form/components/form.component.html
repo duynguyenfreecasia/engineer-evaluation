@@ -1,0 +1,96 @@
+<section class="form__section form--container">
+  <form [formGroup]="form" (ngSubmit)="onPrimaryButtonClick()" *ngIf="form">
+    <div class="subtitle" *ngIf="formInput?.subtitle">
+      <h2>{{ formInput?.subtitle }}</h2>
+    </div>
+
+    <div class="summary" *ngIf="formInput?.summary">
+      <span>{{ formInput?.summary }}</span>
+    </div>
+
+    <div class="form-box">
+      <ng-container
+        *ngFor="
+          let field of formInput?.fields
+            | filter: { hidden: [undefined, false] }
+        ">
+        <ng-container
+          *ngTemplateOutlet="
+            fieldSelector;
+            context: { field: field }
+          "></ng-container>
+      </ng-container>
+    </div>
+
+    <div class="form-content">
+      <ng-container [ngTemplateOutlet]="contentTemplate"></ng-container>
+    </div>
+
+    <div
+      class="form-actions"
+      *ngIf="formInput?.primaryButtonLabel || formInput?.secondaryButtonLabel">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="isPrimaryDisabled()"
+        *ngIf="formInput?.primaryButtonLabel">
+        <span>
+          {{ formInput?.primaryButtonLabel }}
+        </span>
+      </button>
+
+      <button
+        mat-stroked-button
+        class="secondary__btn"
+        type="button"
+        (click)="onSecondaryButtonClick()"
+        *ngIf="formInput?.secondaryButtonLabel">
+        <span>
+          {{ formInput?.secondaryButtonLabel }}
+        </span>
+      </button>
+    </div>
+  </form>
+</section>
+
+<ng-template #fieldSelector let-field="field">
+  <ng-container [ngSwitch]="field?.type">
+    <div
+      class="form__row"
+      [ngClass]="field?.classes || ''"
+      *ngSwitchCase="formFieldType.ROW">
+      <ng-container
+        *ngFor="
+          let fieldChild of field?.fields
+            | filter: { hidden: [undefined, false] }
+        ">
+        <ng-container
+          *ngTemplateOutlet="
+            fieldSelector;
+            context: { field: fieldChild }
+          "></ng-container>
+      </ng-container>
+    </div>
+
+    <div
+      [ngClass]="field?.classes || ''"
+      *ngSwitchCase="formFieldType.SECTION_HEADER">
+      <span>{{ field?.label }}</span>
+    </div>
+
+    <div [ngClass]="field?.classes || ''" *ngSwitchCase="formFieldType.INPUT">
+      <app-input
+        [field]="field"
+        [control]="form.controls[field.key]"></app-input>
+    </div>
+
+    <div
+      [ngClass]="field?.classes || ''"
+      *ngSwitchCase="formFieldType.PASSWORD">
+      <app-password
+        [field]="field"
+        [control]="form.controls[field.key]"></app-password>
+    </div>
+  </ng-container>
+</ng-template>
