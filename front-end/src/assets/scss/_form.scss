@@ -1,0 +1,10 @@
+@import "./mixin";
+
+.form__section {
+  @include flex();
+
+  .title__form {
+    text-align: center;
+    font-size: larger;
+  }
+}

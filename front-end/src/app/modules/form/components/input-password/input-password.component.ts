@@ -7,7 +7,7 @@ import { FormField } from '../../interfaces/form-field.interface';
   selector: 'app-password',
   templateUrl: './input-password.component.html',
 })
-export class InputPasswordComponent extends BaseComponent {
+export class AppInputPasswordComponent extends BaseComponent {
   @Input() field: FormField | any;
   @Input() control: FormControl | any;
 }

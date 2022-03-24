@@ -1,11 +1,13 @@
-<div class="padding">
-  <h1>{{ field?.label }}</h1>
-  <mat-form-field [style.width.px]="500" appearance="fill">
-    <textarea
-      matInput
-      [formControl]="control"
-      [required]="field?.required"></textarea>
-  </mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label *ngIf="field?.label">{{ field?.label }}</mat-label>
+  <textarea
+    matInput
+    [formControl]="control"
+    [rows]="field?.maxrows || 3"
+    [placeholder]="field?.placeholder || ''"
+    [required]="field?.required"
+    [maxlength]="field?.maxLength"
+    [minlength]="field?.minLength"></textarea>
 
   <mat-error *ngIf="field?.errors?.length">
     <ng-container *ngFor="let error of field.errors">
@@ -14,4 +16,4 @@
       </ng-template>
     </ng-container>
   </mat-error>
-</div>
+</mat-form-field>
