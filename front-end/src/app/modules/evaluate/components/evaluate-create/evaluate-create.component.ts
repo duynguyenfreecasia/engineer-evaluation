@@ -4,6 +4,7 @@ import { FormInput } from 'src/app/modules/form/interfaces/form-input.interface'
 import { FormFieldType } from 'src/app/modules/form/enums/form-field-type.enum';
 import { FormFieldInputType } from 'src/app/modules/form/enums/form-field-input-type.enum';
 import { Validators } from '@angular/forms';
+import { ApiService } from 'src/api/api.service';
 
 @Component({
   selector: 'app-evaluate-create',
@@ -12,7 +13,7 @@ import { Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EvaluateCreateComponent extends BaseComponent {
-  constructor() {
+  constructor(private readonly apiService: ApiService) {
     super();
   }
 
@@ -37,5 +38,9 @@ export class EvaluateCreateComponent extends BaseComponent {
     primaryButtonLabel: 'Submit',
   };
 
-  protected override onInit(): void {}
+  protected override onInit(): void {
+    this.subscribe(this.apiService.getEvaluation(), res => {
+      console.log(res);
+    });
+  }
 }
