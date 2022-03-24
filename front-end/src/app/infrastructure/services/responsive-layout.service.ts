@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { Subscribable } from '../components/base-component/subscribable';
 
@@ -31,32 +31,32 @@ export class ResponsiveLayoutService extends Subscribable {
     this.initSubscriptions();
   }
 
-  public getLayoutObservable() {
+  public getLayoutObservable(): Observable<Layout> {
     return this.currentLayout$.asObservable().pipe(distinctUntilChanged());
   }
 
-  public isMobile() {
+  public isMobile(): Observable<boolean> {
     return this.currentLayout$.asObservable().pipe(
       map(v => v === Layout.MOBILE || v === Layout.MOBILE_LANDSCAPE),
       distinctUntilChanged()
     );
   }
 
-  public isTablet() {
+  public isTablet(): Observable<boolean> {
     return this.currentLayout$.asObservable().pipe(
       map(v => v === Layout.TABLET),
       distinctUntilChanged()
     );
   }
 
-  public isDesktop() {
+  public isDesktop(): Observable<boolean> {
     return this.currentLayout$.asObservable().pipe(
       map(v => v === Layout.DESKTOP),
       distinctUntilChanged()
     );
   }
 
-  private initSubscriptions() {
+  private initSubscriptions(): void {
     this.LAYOUT_BREAKPOINTS_LIST.forEach(v => {
       const subscription = this.breakpointObserver
         .observe(v.breakpoints)
