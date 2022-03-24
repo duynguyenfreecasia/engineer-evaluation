@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   url: 'http://localhost:4200',
-  apiUrl: '', // TODO: WIP
+  apiUrl: 'https://htzpp4vt9b.execute-api.us-east-1.amazonaws.com',
   defaultLanguage: 'jp',
   cognito: {
     userPoolId: '', // TODO: WIP

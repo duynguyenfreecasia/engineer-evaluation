@@ -1,5 +1,6 @@
 import { BaseComponent } from 'src/app/infrastructure/components/base-component/base.component';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ApiService } from 'src/api/api.service';
 
 @Component({
   selector: 'app-evaluate-create',
@@ -8,9 +9,13 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EvaluateCreateComponent extends BaseComponent {
-  constructor() {
+  constructor(private readonly apiService: ApiService) {
     super();
   }
 
-  protected override onInit(): void {}
+  protected override onInit(): void {
+    this.subscribe(this.apiService.getEvaluation(), res => {
+      console.log(res);
+    });
+  }
 }
