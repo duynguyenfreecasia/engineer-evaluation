@@ -20,6 +20,14 @@ export class EvaluateCreateComponent extends BaseComponent {
   result: FormInput = {
     fields: [
       {
+        key: 'textarea',
+        type: FormFieldType.TEXT_AREA,
+        label: 'エンジニア評価システム（仮）',
+        required: false,
+        initValue:
+          'エンジニア評価システム（仮）は、管理者が評価フレームと評価セルを組み合わせて設計した評価ユニットを、メンバーが評価登録して、スコアリングされた評価結果をメンバーが確認できるサービス',
+      },
+      {
         key: 'id',
         type: FormFieldType.INPUT,
         required: true,
@@ -33,6 +41,13 @@ export class EvaluateCreateComponent extends BaseComponent {
         required: true,
         validators: [Validators.required],
         placeholder: 'Passwork',
+      },
+      {
+        key: 'select',
+        type: FormFieldType.SELECT,
+        required: true,
+        validators: [Validators.required],
+        placeholder: 'Choose Me',
       },
     ],
     primaryButtonLabel: 'Submit',

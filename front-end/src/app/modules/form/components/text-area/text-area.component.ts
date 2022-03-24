@@ -6,6 +6,7 @@ import { FormField } from '../../interfaces/form-field.interface';
 @Component({
   selector: 'app-text-area',
   templateUrl: './text-area.component.html',
+  styleUrls: ['./text-area.component.scss'],
 })
 export class AppTextAreaComponent extends BaseComponent {
   @Input() field: FormField | any;
