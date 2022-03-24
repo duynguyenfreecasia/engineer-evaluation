@@ -7,7 +7,7 @@ import { FormSelect } from '../../interfaces/form-select.interface';
   selector: 'app-radio',
   templateUrl: './radio.component.html',
 })
-export class AppInputComponent extends BaseComponent {
+export class AppRadioComponent extends BaseComponent {
   @Input() field: FormSelect | any;
   @Input() control: FormControl | any;
 }

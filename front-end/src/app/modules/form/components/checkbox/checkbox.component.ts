@@ -7,7 +7,7 @@ import { FormSelect } from '../../interfaces/form-select.interface';
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
 })
-export class AppInputComponent extends BaseComponent {
+export class AppCheckBoxComponent extends BaseComponent {
   @Input() field: FormSelect | any;
   @Input() control: FormControl | any;
 }

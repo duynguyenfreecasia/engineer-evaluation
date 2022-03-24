@@ -1,7 +1,6 @@
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { Sample1Component } from './sample1/sample1.component';
 
 const routes: Routes = [
   {

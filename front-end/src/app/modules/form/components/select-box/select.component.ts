@@ -7,7 +7,7 @@ import { FormSelect } from '../../interfaces/form-select.interface';
   selector: 'app-select',
   templateUrl: './select.component.html',
 })
-export class AppInputComponent extends BaseComponent {
+export class AppSelectComponent extends BaseComponent {
   @Input() field: FormSelect | any;
   @Input() control: FormControl | any;
 }

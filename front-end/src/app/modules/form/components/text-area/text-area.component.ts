@@ -7,7 +7,7 @@ import { FormField } from '../../interfaces/form-field.interface';
   selector: 'app-text-area',
   templateUrl: './text-area.component.html',
 })
-export class AppInputComponent extends BaseComponent {
+export class AppTextAreaComponent extends BaseComponent {
   @Input() field: FormField | any;
   @Input() control: FormControl | any;
 }

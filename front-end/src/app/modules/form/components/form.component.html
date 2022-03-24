@@ -92,5 +92,41 @@
         [field]="field"
         [control]="form.controls[field.key]"></app-password>
     </div>
+
+    <div [ngClass]="field?.classes || ''" *ngSwitchCase="formFieldType.RADIO">
+      <app-radio
+        [field]="field"
+        [control]="form.controls[field.key]"></app-radio>
+    </div>
+
+    <div
+      [ngClass]="field?.classes || ''"
+      *ngSwitchCase="formFieldType.CHECK_BOX">
+      <app-checkbox
+        [field]="field"
+        [control]="form.controls[field.key]"></app-checkbox>
+    </div>
+
+    <div [ngClass]="field?.classes || ''" *ngSwitchCase="formFieldType.SELECT">
+      <app-select
+        [field]="field"
+        [control]="form.controls[field.key]"></app-select>
+    </div>
+
+    <div
+      [ngClass]="field?.classes || ''"
+      *ngSwitchCase="formFieldType.DATE_PICKER">
+      <app-date-picker
+        [field]="field"
+        [control]="form.controls[field.key]"></app-date-picker>
+    </div>
+
+    <div
+      [ngClass]="field?.classes || ''"
+      *ngSwitchCase="formFieldType.TEXT_AREA">
+      <app-text-area
+        [field]="field"
+        [control]="form.controls[field.key]"></app-text-area>
+    </div>
   </ng-container>
 </ng-template>

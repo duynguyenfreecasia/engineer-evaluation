@@ -3,4 +3,9 @@ export enum FormFieldType {
   INPUT,
   PASSWORD,
   SECTION_HEADER,
+  RADIO,
+  CHECK_BOX,
+  SELECT,
+  DATE_PICKER,
+  TEXT_AREA,
 }

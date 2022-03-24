@@ -7,7 +7,7 @@ import { FormField } from '../../interfaces/form-field.interface';
   selector: 'app-date-picker',
   templateUrl: './date-picker.component.html',
 })
-export class AppInputComponent extends BaseComponent {
+export class AppDatePickerComponent extends BaseComponent {
   @Input() field: FormField | any;
   @Input() control: FormControl | any;
 }
