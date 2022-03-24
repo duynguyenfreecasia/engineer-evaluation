@@ -1,0 +1,22 @@
+<mat-form-field appearance="fill">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label> {{ field?.label }}</mat-label>
+      <input
+        matInput
+        [formControl]="control"
+        [required]="field?.required"
+        [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <mat-error *ngIf="field?.errors?.length">
+    <ng-container *ngFor="let error of field.errors">
+      <ng-template [ngIf]="control.hasError(error.type)">
+        {{ error.message }}
+      </ng-template>
+    </ng-container>
+  </mat-error>
+</mat-form-field>

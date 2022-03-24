@@ -1,0 +1,19 @@
+<mat-form-field appearance="fill">
+  <mat-radio-group [aria-label]="field?.label">
+    <mat-radio-button
+      [required]="field?.required"
+      [formControl]="control"
+      *ngFor="let option of field.options"
+      [value]="option.value"
+      >{{ field?.label }}</mat-radio-button
+    >
+  </mat-radio-group>
+
+  <mat-error *ngIf="field?.errors?.length">
+    <ng-container *ngFor="let error of field.errors">
+      <ng-template [ngIf]="control.hasError(error.type)">
+        {{ error.message }}
+      </ng-template>
+    </ng-container>
+  </mat-error>
+</mat-form-field>
