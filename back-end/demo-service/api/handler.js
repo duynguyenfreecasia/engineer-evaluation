@@ -72,9 +72,76 @@ module.exports.insertRecord = async (event, context, callback) => {
 };
 
 module.exports.updateRecord = async (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: event,
+  const requestBody = JSON.parse(event.body);
+  const age = requestBody.age;
+  const name = requestBody.name;
+  const { id } = event.queryStringParameters
+
+  const dataInfo = {
+    TableName: process.env.DEMO_TABLE,
+    Key: { id },
+    UpdateExpression : "SET #name = :name, #age = :age",
+    ExpressionAttributeValues: {
+      ":name" : name,
+      ":age" : age
+    },
+
+    ExpressionAttributeNames: {
+      "#name": "name",
+      "#age" : "age"
+    },
+    
+    ReturnValues: "UPDATED_NEW"
   };
-  return response;
+  return dynamoDb.update(dataInfo).promise()
+    .then((res) => {
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify({
+          message: `Successfully ${event.body}`,
+        }),
+      });
+    })
+    .catch((err) => {
+      callback(null, {
+        statusCode: 500,
+        body: JSON.stringify({
+          message: `Error ${err}`,
+        }),
+      });
+    });
+};
+
+
+module.exports.deleteRecord = async (event, context, callback) => {
+  const { id } = event.queryStringParameters
+
+  const dataInfo = {
+    TableName: process.env.DEMO_TABLE,
+    Key: { id },
+    ConditionExpression:"#id = :id",
+    ExpressionAttributeValues: {
+      ":id" : id
+    },
+    ExpressionAttributeNames: {
+      "#id": "id"
+    },
+  };
+  return dynamoDb.delete(dataInfo).promise()
+    .then((res) => {
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify({
+          message: `Delete successfully id is: ${id}`,
+        }),
+      });
+    })
+    .catch((err) => {
+      callback(null, {
+        statusCode: 500,
+        body: JSON.stringify({
+          message: `Error ${err}`,
+        }),
+      });
+    });
 };

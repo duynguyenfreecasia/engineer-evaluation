@@ -11,10 +11,10 @@
 #
 # Happy Coding!
 
-service: demo-2
+service: tuanphat
 # app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
+app: tuanphat
+org: tuanphat
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -36,6 +36,8 @@ provider:
             - "dynamodb:Scan"
             - "dynamodb:GetItem"
             - "dynamodb:PutItem"
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
           Resource: "*"
 # you can overwrite defaults here
 
@@ -98,6 +100,13 @@ functions:
     events:
       - httpApi:
           path: /api/update
+          method: put
+  deleteRecord:
+    handler: api/handler.deleteRecord
+    memorySize: 128
+    events:
+      - httpApi:
+          path: /api/delete
           method: put
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
