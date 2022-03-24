@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { makeStateKey, TransferState } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -36,5 +36,11 @@ export class ApiService {
     } catch (error) {
       // Ignore
     }
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.log('error', error);
+    // return an observable with a user-facing error message
+    return throwError('Internal Error.');
   }
 }

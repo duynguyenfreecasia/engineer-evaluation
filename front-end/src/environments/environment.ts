@@ -7,6 +7,10 @@ export const environment = {
   url: 'http://localhost:4200',
   apiUrl: '', // TODO: WIP
   defaultLanguage: 'jp',
+  cognito: {
+    userPoolId: '', // TODO: WIP
+    userPoolWebClientId: '', // TODO: WIP
+  },
 };
 
 /*
