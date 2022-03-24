@@ -9,7 +9,7 @@ defaults:
     working-directory: ./back-end/demo-service
 jobs:
   lambda-deploy:
-  	runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout to repo
         uses: actions/checkout@v2
