@@ -91,7 +91,7 @@
         [control]="form.controls[field.key]"></app-input>
     </div>
 
-    <div
+    <!-- <div
       [ngClass]="field?.classes || ''"
       *ngSwitchCase="formFieldType.PASSWORD">
       <app-password
@@ -103,7 +103,7 @@
       <app-radio
         [field]="field"
         [control]="form.controls[field.key]"></app-radio>
-    </div>
+    </div> -->
 
     <div
       [ngClass]="field?.classes || ''"
@@ -119,7 +119,7 @@
         [control]="form.controls[field.key]"></app-select>
     </div>
 
-    <div
+    <!-- <div
       [ngClass]="field?.classes || ''"
       *ngSwitchCase="formFieldType.DATE_PICKER">
       <app-date-picker
@@ -133,6 +133,6 @@
       <app-text-area
         [field]="field"
         [control]="form.controls[field.key]"></app-text-area>
-    </div>
+    </div> -->
   </ng-container>
 </ng-template>
