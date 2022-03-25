@@ -6,6 +6,7 @@ import { MessageUtils } from 'src/app/infrastructure/utils/message.utils';
 import { FormFieldType } from '../../form/enums/form-field-type.enum';
 import { FormField } from '../../form/interfaces/form-field.interface';
 import { FormInput } from '../../form/interfaces/form-input.interface';
+import { EvaluateCreate } from '../interfaces/evaluate-create.interface';
 
 @Injectable()
 export class EvaluateCreateService extends Subscribable {
@@ -82,6 +83,18 @@ export class EvaluateCreateService extends Subscribable {
       primaryButtonLabel: MessageUtils.EvaluateCreate.Button,
     };
     return result;
+  }
+
+  public getList(): void {
+    this.subscribe(this.apiService.getEvaluation(), res => {
+      console.log(res);
+    });
+  }
+
+  public create(input: EvaluateCreate): void {
+    this.subscribe(this.apiService.createEvaluation(input), res => {
+      console.log(res);
+    });
   }
 
   private getTechnicalFormField(): FormField[] {
