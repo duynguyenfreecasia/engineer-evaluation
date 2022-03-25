@@ -19,7 +19,7 @@ module.exports.getData = async (event, context, callback) => {
       "#id": "id"
     },
     ExpressionAttributeValues: {
-      ":id": event.queryStringParameters.id
+      ":id": event.pathParameters.id
     }
   };
 
@@ -27,9 +27,17 @@ module.exports.getData = async (event, context, callback) => {
     .query(params)
     .promise()
     .then((result) => {
+      let data = {};
+      if(result.Items?.length > 0) {
+        data = {
+          Item:  result.Items[0]
+        };
+      }
       const response = {
         statusCode: 200,
-        body: JSON.stringify(result),
+        body: JSON.stringify({
+          data: data
+        }),
       };
       callback(null, response);
     })
@@ -40,15 +48,17 @@ module.exports.getData = async (event, context, callback) => {
 
 module.exports.insertRecord = async (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
-  const age = requestBody.age;
-  const name = requestBody.name;
+  const item1 = requestBody.item1;
+  const item2 = requestBody.item2;
+  const item3 = requestBody.item3;
 
   const dataInfo = {
     TableName: process.env.DEMO_TABLE,
     Item: {
       id: uuid.v1(),
-      name: name,
-      age: age
+      item1: item1,
+      item2: item2,
+      item3: item3
     },
   };
 
@@ -57,7 +67,8 @@ module.exports.insertRecord = async (event, context, callback) => {
       callback(null, {
         statusCode: 200,
         body: JSON.stringify({
-          message: `Successfully ${event.body}`,
+          message: `Successfully`,
+          data: dataInfo.Item
         }),
       });
     })
@@ -73,22 +84,25 @@ module.exports.insertRecord = async (event, context, callback) => {
 
 module.exports.updateRecord = async (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
-  const age = requestBody.age;
-  const name = requestBody.name;
-  const { id } = event.queryStringParameters
+  const item1 = requestBody.item1;
+  const item2 = requestBody.item2;
+  const item3 = requestBody.item3;
+  const { id } = event.pathParameters
 
   const dataInfo = {
     TableName: process.env.DEMO_TABLE,
     Key: { id },
-    UpdateExpression : "SET #name = :name, #age = :age",
+    UpdateExpression : "SET #item1 = :item1, #item2 = :item2, #item3 = :item3",
     ExpressionAttributeValues: {
-      ":name" : name,
-      ":age" : age
+      ":item1" : item1,
+      ":item2" : item2,
+      ":item3" : item3
     },
 
     ExpressionAttributeNames: {
-      "#name": "name",
-      "#age" : "age"
+      "#item1": "item1",
+      "#item2" : "item2",
+      "#item3": "item3"
     },
     
     ReturnValues: "UPDATED_NEW"
@@ -98,7 +112,7 @@ module.exports.updateRecord = async (event, context, callback) => {
       callback(null, {
         statusCode: 200,
         body: JSON.stringify({
-          message: `Successfully ${event.body}`,
+          message: `Update Successfully`
         }),
       });
     })
@@ -114,7 +128,7 @@ module.exports.updateRecord = async (event, context, callback) => {
 
 
 module.exports.deleteRecord = async (event, context, callback) => {
-  const { id } = event.queryStringParameters
+  const { id } = event.pathParameters
 
   const dataInfo = {
     TableName: process.env.DEMO_TABLE,
@@ -132,7 +146,7 @@ module.exports.deleteRecord = async (event, context, callback) => {
       callback(null, {
         statusCode: 200,
         body: JSON.stringify({
-          message: `Delete successfully id is: ${id}`,
+          message: `Delete successfully`,
         }),
       });
     })
