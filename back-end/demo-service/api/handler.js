@@ -28,7 +28,7 @@ module.exports.getData = async (event, context, callback) => {
     .promise()
     .then((result) => {
       let data = {};
-      if(result.Items?.length > 0) {
+      if(result.Items.length > 0) {
         data = {
           Item:  result.Items[0]
         };
@@ -48,17 +48,17 @@ module.exports.getData = async (event, context, callback) => {
 
 module.exports.insertRecord = async (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
-  const item_1 = requestBody.item_1;
-  const item_2 = requestBody.item_2;
-  const item_3 = requestBody.item_3;
+  const technicalStrength = requestBody.technicalStrength;
+  const workAttitude = requestBody.workAttitude;
+  const technical = requestBody.technical;
 
   const dataInfo = {
     TableName: process.env.DEMO_TABLE,
     Item: {
       id: uuid.v1(),
-      item_1: item_1,
-      item_2: item_2,
-      item_3: item_3
+      technicalStrength: technicalStrength,
+      workAttitude: workAttitude,
+      technical: technical
     },
   };
 
@@ -84,25 +84,25 @@ module.exports.insertRecord = async (event, context, callback) => {
 
 module.exports.updateRecord = async (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
-  const item_1 = requestBody.item_1;
-  const item_2 = requestBody.item_2;
-  const item_3 = requestBody.item_3;
+  const technicalStrength = requestBody.technicalStrength;
+  const workAttitude = requestBody.workAttitude;
+  const technical = requestBody.technical;
   const { id } = event.pathParameters
 
   const dataInfo = {
     TableName: process.env.DEMO_TABLE,
     Key: { id },
-    UpdateExpression : "SET #item_1 = :item_1, #item_2 = :item_2, #item_3 = :item_3",
+    UpdateExpression : "SET #technicalStrength = :technicalStrength, #workAttitude = :workAttitude, #technical = :technical",
     ExpressionAttributeValues: {
-      ":item_1" : item_1,
-      ":item_2" : item_2,
-      ":item_3" : item_3
+      ":technicalStrength" : technicalStrength,
+      ":workAttitude" : workAttitude,
+      ":technical" : technical
     },
 
     ExpressionAttributeNames: {
-      "#item_1": "item_1",
-      "#item_2" : "item_2",
-      "#item_3": "item_3"
+      "#technicalStrength": "technicalStrength",
+      "#workAttitude" : "workAttitude",
+      "#technical": "technical"
     },
     
     ReturnValues: "UPDATED_NEW"
