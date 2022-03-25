@@ -120,10 +120,17 @@ export interface PasswordFormField extends BaseFormField {
   maxrows?: number;
 }
 
+export interface DatePickerFormField extends BaseFormField {
+  minDate?: Date;
+
+  maxDate?: Date;
+}
+
 export type FormField =
   | BaseFormField
   | InputFormField
   | TextareaFormField
   | DropDownFormField
   | RadioFormField
-  | PasswordFormField;
+  | PasswordFormField
+  | DatePickerFormField;
