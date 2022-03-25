@@ -1,6 +1,4 @@
-import { FormField } from './form-field.interface';
-
-export interface FormSelect extends FormField {
+export interface FormSelect {
   options?: Options[];
 }
 

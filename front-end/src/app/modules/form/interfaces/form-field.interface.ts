@@ -2,8 +2,9 @@ import { FormGroup, ValidatorFn } from '@angular/forms';
 import { FormFieldInputType } from '../enums/form-field-input-type.enum';
 import { FormFieldType } from '../enums/form-field-type.enum';
 import { FormObservables } from './form-observables.interface';
+import { FormSelect } from './form-select.interface';
 
-export interface FormField extends FormObservables {
+export interface FormField extends FormSelect, FormObservables {
   key: string;
 
   type: FormFieldType;
