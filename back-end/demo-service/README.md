@@ -17,9 +17,14 @@
    2. On serverless.yml file: 
       1. Change "org" => your org 
       2. Change "app" => The app name  which created
+      3. Change "service" => your service name (exp: engeva-api)
 3. Deploy
-   1. Deploy to AWS: **sls deploy** (or serverless deploy) <br /> 
-   2. Deploy on Local: **sls offline**
+   1. Deploy on AWS:
+      1. **npm install**
+      2. **sls deploy** (or serverless deploy) <br /> 
+   2. Deploy on Local:
+      1. **npm install**
+      2. **sls offline**
 4. Done
 5. List API after deploy
    
