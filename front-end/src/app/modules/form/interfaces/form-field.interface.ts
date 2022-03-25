@@ -69,4 +69,6 @@ export interface FormField extends FormSelect, FormObservables {
   fields?: FormField[];
 
   handleIcon?: (field?: any) => void;
+
+  maxrows?: number;
 }

@@ -22,7 +22,9 @@ export class EvaluateCreateService extends Subscribable {
         },
         {
           key: 'textarea',
+          classes: 'text__area',
           type: FormFieldType.TEXT_AREA,
+          maxrows: 5,
           label: 'エンジニア評価システム（仮）',
           initValue:
             'エンジニア評価システム（仮）は、管理者が評価フレームと評価セルを組み合わせて設計した評価ユニットを、メンバーが評価登録して、スコアリングされた評価結果をメンバーが確認できるサービス',
@@ -33,6 +35,12 @@ export class EvaluateCreateService extends Subscribable {
           label: 'PHPの技術力はどうでしたか',
           required: true,
           validators: [Validators.required],
+          errors: [
+            {
+              type: 'required',
+              message: '選択してください',
+            },
+          ],
           options: [
             {
               label: '全然だめ',
@@ -90,6 +98,7 @@ export class EvaluateCreateService extends Subscribable {
               value: 5,
             },
           ],
+          classes: 'margin__checkbox',
         },
       ],
       primaryButtonLabel: 'Submit',
