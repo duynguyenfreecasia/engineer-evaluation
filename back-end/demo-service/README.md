@@ -18,9 +18,8 @@
       1. Change "org" => your org 
       2. Change "app" => The app name  which created
 3. Deploy
-   1. Deploy to AWS: **sls deploy** (or serverless deploy) \ ![](../../../../../../../var/folders/mq/tt4mcjm14gg8lfjghrj_77kw0000gn/T/TemporaryItems/NSIRD_screencaptureui_q9A6oa/Screen Shot 2022-03-25 at 3.31.48 PM.png)  
+   1. Deploy to AWS: **sls deploy** (or serverless deploy) <br /> 
    2. Deploy on Local: **sls offline**
-   ![](../../../../../../../var/folders/mq/tt4mcjm14gg8lfjghrj_77kw0000gn/T/TemporaryItems/NSIRD_screencaptureui_afw8eR/Screen Shot 2022-03-25 at 3.34.22 PM.png)
 4. Done
 5. List API after deploy
    
