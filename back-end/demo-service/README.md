@@ -13,7 +13,7 @@
          --key AKIAIOSFODNN7EXAMPLE \
          --secret wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 2. Config Source:
-   1. Make copy serverless.example.yml on  engineer-evaluation/back-end/demo-service folder to serverless.yml
+   1. Make copy **serverless.example.yml** on  engineer-evaluation/back-end/demo-service folder to **serverless.yml**
    2. On serverless.yml file: 
       1. Change "org" => your org 
       2. Change "app" => The app name  which created
