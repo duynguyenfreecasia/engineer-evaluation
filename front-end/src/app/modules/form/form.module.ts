@@ -17,10 +17,10 @@ const components: Type<any>[] = [
   AppInputComponent,
   AppCheckBoxComponent,
   AppSelectComponent,
-  // AppInputPasswordComponent,
-  // AppRadioComponent,
-  // AppDatePickerComponent,
-  // AppTextAreaComponent,
+  AppInputPasswordComponent,
+  AppRadioComponent,
+  AppDatePickerComponent,
+  AppTextAreaComponent,
 ];
 
 @NgModule({
