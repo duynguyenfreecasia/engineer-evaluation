@@ -4,6 +4,12 @@ const uuid = require("uuid");
 const AWS = require("aws-sdk");
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 AWS.config.setPromisesDependency(require("bluebird"));
+const resHeader  = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "X-Requested-With",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "PUT, GET, POST, DELETE, OPTIONS"
+}
 
 module.exports.getList = async (event) => {
   return dynamoDb.scan({ TableName: process.env.DEMO_TABLE })
@@ -34,6 +40,7 @@ module.exports.getData = async (event, context, callback) => {
         };
       }
       const response = {
+        headers: resHeader,
         statusCode: 200,
         body: JSON.stringify({
           data: data
@@ -65,7 +72,9 @@ module.exports.insertRecord = async (event, context, callback) => {
   return dynamoDb.put(dataInfo).promise()
     .then((res) => {
       callback(null, {
+        isBase64Encoded: false, // Set to `true` for binary support.
         statusCode: 200,
+        headers: resHeader,
         body: JSON.stringify({
           message: `Successfully`,
           data: dataInfo.Item
@@ -118,6 +127,7 @@ module.exports.updateRecord = async (event, context, callback) => {
     })
     .catch((err) => {
       callback(null, {
+        headers: resHeader,
         statusCode: 500,
         body: JSON.stringify({
           message: `Error ${err}`,
@@ -145,6 +155,7 @@ module.exports.deleteRecord = async (event, context, callback) => {
     .then((res) => {
       callback(null, {
         statusCode: 200,
+        headers: resHeader,
         body: JSON.stringify({
           message: `Delete successfully`,
         }),
