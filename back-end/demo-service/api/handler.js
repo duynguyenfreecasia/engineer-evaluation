@@ -48,17 +48,17 @@ module.exports.getData = async (event, context, callback) => {
 
 module.exports.insertRecord = async (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
-  const item1 = requestBody.item1;
-  const item2 = requestBody.item2;
-  const item3 = requestBody.item3;
+  const item_1 = requestBody.item_1;
+  const item_2 = requestBody.item_2;
+  const item_3 = requestBody.item_3;
 
   const dataInfo = {
     TableName: process.env.DEMO_TABLE,
     Item: {
       id: uuid.v1(),
-      item1: item1,
-      item2: item2,
-      item3: item3
+      item_1: item_1,
+      item_2: item_2,
+      item_3: item_3
     },
   };
 
@@ -84,25 +84,25 @@ module.exports.insertRecord = async (event, context, callback) => {
 
 module.exports.updateRecord = async (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
-  const item1 = requestBody.item1;
-  const item2 = requestBody.item2;
-  const item3 = requestBody.item3;
+  const item_1 = requestBody.item_1;
+  const item_2 = requestBody.item_2;
+  const item_3 = requestBody.item_3;
   const { id } = event.pathParameters
 
   const dataInfo = {
     TableName: process.env.DEMO_TABLE,
     Key: { id },
-    UpdateExpression : "SET #item1 = :item1, #item2 = :item2, #item3 = :item3",
+    UpdateExpression : "SET #item_1 = :item_1, #item_2 = :item_2, #item_3 = :item_3",
     ExpressionAttributeValues: {
-      ":item1" : item1,
-      ":item2" : item2,
-      ":item3" : item3
+      ":item_1" : item_1,
+      ":item_2" : item_2,
+      ":item_3" : item_3
     },
 
     ExpressionAttributeNames: {
-      "#item1": "item1",
-      "#item2" : "item2",
-      "#item3": "item3"
+      "#item_1": "item_1",
+      "#item_2" : "item_2",
+      "#item_3": "item_3"
     },
     
     ReturnValues: "UPDATED_NEW"
