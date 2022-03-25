@@ -1,12 +1,19 @@
-<mat-form-field appearance="fill">
-  <mat-radio-group>
+<div [style.flexDirection]="field?.flexDirection || 'row'">
+  <mat-label *ngIf="field?.label">{{ field?.label }}</mat-label>
+  <mat-radio-group
+    [formControl]="control"
+    [color]="color"
+    [required]="field?.required"
+    [style.flexDirection]="field?.flexDirection || 'row'"
+    class="custom-radio__group">
     <mat-radio-button
-      [required]="field?.required"
-      [formControl]="control"
-      *ngFor="let option of field.options"
-      [value]="option.value"
-      >{{ field?.label }}</mat-radio-button
-    >
+      class="custom-radio__button"
+      *ngFor="let itemRadio of field?.groupRadio"
+      [color]="color"
+      [value]="itemRadio?.value"
+      [disabled]="itemRadio?.disabled">
+      {{ itemRadio?.label }}
+    </mat-radio-button>
   </mat-radio-group>
 
   <mat-error *ngIf="field?.errors?.length">
@@ -16,4 +23,4 @@
       </ng-template>
     </ng-container>
   </mat-error>
-</mat-form-field>
+</div>

@@ -75,7 +75,13 @@
 
     <div
       [ngClass]="field?.classes || ''"
-      *ngSwitchCase="formFieldType.SECTION_HEADER">
+      *ngSwitchCase="formFieldType.SECTION_TITLE">
+      <h1>{{ field?.label }}</h1>
+    </div>
+
+    <div
+      [ngClass]="field?.classes || ''"
+      *ngSwitchCase="formFieldType.SECTION_DESCRIPTION">
       <h3>{{ field?.label }}</h3>
     </div>
 

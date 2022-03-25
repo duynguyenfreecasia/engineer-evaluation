@@ -2,107 +2,98 @@ import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { ApiService } from 'src/api/api.service';
 import { Subscribable } from 'src/app/infrastructure/components/base-component/subscribable';
+import { MessageUtils } from 'src/app/infrastructure/utils/message.utils';
 import { FormFieldType } from '../../form/enums/form-field-type.enum';
+import { FormField } from '../../form/interfaces/form-field.interface';
 import { FormInput } from '../../form/interfaces/form-input.interface';
 
 @Injectable()
 export class EvaluateCreateService extends Subscribable {
+  public readonly technicalList = ['PHP', 'Python', 'Ruby', 'Node', 'Go'];
+
+  private readonly technicalOptions = [
+    {
+      label: '全然だめ',
+      value: '全然だめ',
+    },
+    {
+      label: 'まぁまぁ',
+      value: 'まぁまぁ',
+    },
+    {
+      label: '普通',
+      value: '普通',
+    },
+    {
+      label: '良い',
+      value: '良い',
+    },
+    {
+      label: '素晴らしい',
+      value: '素晴らしい',
+    },
+  ];
+
   constructor(private readonly apiService: ApiService) {
     super();
   }
 
   public geEvaluateCreateFormInput(): FormInput {
+    const checkboxFields: FormField[] = this.getTechnicalFormField();
+
     const result: FormInput = {
       fields: [
         {
           key: 'title',
-          type: FormFieldType.SECTION_HEADER,
-          label: '評価フォーム',
+          type: FormFieldType.SECTION_TITLE,
+          label: MessageUtils.EvaluateCreate.Title,
           classes: 'title__form',
         },
         {
-          key: 'textarea',
-          classes: 'text__area',
-          type: FormFieldType.TEXT_AREA,
-          maxrows: 5,
-          label: 'エンジニア評価システム（仮）',
-          initValue:
-            'エンジニア評価システム（仮）は、管理者が評価フレームと評価セルを組み合わせて設計した評価ユニットを、メンバーが評価登録して、スコアリングされた評価結果をメンバーが確認できるサービス',
+          key: 'description',
+          type: FormFieldType.SECTION_DESCRIPTION,
+          label: MessageUtils.EvaluateCreate.Description,
+          classes: 'description__form',
         },
         {
-          key: 'select',
+          key: 'technicalStrength',
           type: FormFieldType.SELECT,
           label: 'PHPの技術力はどうでしたか',
+          options: this.technicalOptions,
           required: true,
-          validators: [Validators.required],
           errors: [
             {
               type: 'required',
-              message: '選択してください',
-            },
-          ],
-          options: [
-            {
-              label: '全然だめ',
-              value: 1,
-            },
-            {
-              label: 'まぁまぁ',
-              value: 2,
-            },
-            {
-              label: '普通',
-              value: 3,
-            },
-            {
-              label: '良い',
-              value: 4,
-            },
-            {
-              label: '素晴らしい',
-              value: 5,
+              message: MessageUtils.Global.RequiredSelectError,
             },
           ],
         },
         {
-          key: 'input',
+          key: 'workAttitude',
           type: FormFieldType.INPUT,
-          required: true,
-          validators: [Validators.required],
           label: '項目2',
-          initValue: '仕事の姿勢はどうですか',
         },
         {
-          key: 'checkbox',
-          type: FormFieldType.CHECK_BOX,
-          label: '興味のある技術は何ですか',
-          options: [
-            {
-              label: 'Php',
-              value: 1,
-            },
-            {
-              label: 'Python',
-              value: 2,
-            },
-            {
-              label: 'Ruby',
-              value: 3,
-            },
-            {
-              label: 'Node',
-              value: 4,
-            },
-            {
-              label: 'Go',
-              value: 5,
-            },
-          ],
-          classes: 'margin__checkbox',
+          key: 'rowCheckbox',
+          type: FormFieldType.ROW,
+          fields: checkboxFields,
         },
       ],
-      primaryButtonLabel: 'Submit',
+      primaryButtonLabel: MessageUtils.EvaluateCreate.Button,
     };
+    return result;
+  }
+
+  private getTechnicalFormField(): FormField[] {
+    const result: FormField[] = [];
+    this.technicalList.forEach(x => {
+      const item: FormField = {
+        key: x,
+        type: FormFieldType.CHECK_BOX,
+        label: x,
+      };
+      result.push(item);
+    });
     return result;
   }
 }

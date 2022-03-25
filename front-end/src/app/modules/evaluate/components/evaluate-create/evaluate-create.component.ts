@@ -2,6 +2,7 @@ import { BaseComponent } from 'src/app/infrastructure/components/base-component/
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormInput } from 'src/app/modules/form/interfaces/form-input.interface';
 import { EvaluateCreateService } from '../../services/evaluate-create.service';
+import { EvaluateCreate } from '../../interfaces/evaluate-create.interface';
 
 @Component({
   selector: 'app-evaluate-create',
@@ -17,7 +18,26 @@ export class EvaluateCreateComponent extends BaseComponent {
     super();
   }
 
+  public onSubmit(value: any): void {
+    const input: EvaluateCreate = {
+      technicalStrength: value?.technicalStrength,
+      workAttitude: value?.workAttitude,
+      technical: this.getTechnicalListValue(value),
+    };
+    console.log(input);
+  }
+
   protected override onInit(): void {
     this.formInput = this.evaluateCreateService.geEvaluateCreateFormInput();
+  }
+
+  private getTechnicalListValue(value: any): string[] {
+    const input: string[] = [];
+    this.evaluateCreateService.technicalList.forEach(x => {
+      if (value[`${x}`]) {
+        input.push(x);
+      }
+    });
+    return input;
   }
 }

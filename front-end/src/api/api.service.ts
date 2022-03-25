@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { makeStateKey, TransferState } from '@angular/platform-browser';
 import { Observable, throwError } from 'rxjs';
+import { EvaluateCreate } from 'src/app/modules/evaluate/interfaces/evaluate-create.interface';
 import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -15,6 +16,11 @@ export class ApiService {
   public getEvaluation(): Observable<Object> {
     const url = `${this.baseUrl}/dev/evaluation-unit`;
     return this.http.get(url);
+  }
+
+  public createEvaluation(input: EvaluateCreate): Observable<Object> {
+    const url = `${this.baseUrl}/dev/evaluation-unit`;
+    return this.http.post(url, input);
   }
 
   private handleError(error: HttpErrorResponse) {

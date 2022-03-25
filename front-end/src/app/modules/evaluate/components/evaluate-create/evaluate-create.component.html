@@ -1,15 +1,5 @@
-<!-- <section>評価フォーム</section>
-
-<h3>項目1</h3>
-Dropdown: 全然だめ まぁまぁ 普通 良い 素晴らしい Required Validation error: 「
-選択してください 」
-<h3>項目2</h3>
-input text 1 dòng 仕事の姿勢はどうですか không check maxlength
-<h3>項目3</h3>
-checkbox multiple PHP Python Ruby Node Go
-
-<button>評価登録</button> -->
-
 <section class="evaluate-create__section">
-  <app-form [formInput]="formInput"></app-form>
+  <app-form
+    [formInput]="formInput"
+    (primaryEmitter)="onSubmit($event)"></app-form>
 </section>

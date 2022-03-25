@@ -14,13 +14,13 @@ import { AppTextAreaComponent } from './components/text-area/text-area.component
 
 const components: Type<any>[] = [
   AppFormComponent,
-  AppInputPasswordComponent,
   AppInputComponent,
   AppCheckBoxComponent,
-  AppRadioComponent,
-  AppDatePickerComponent,
-  AppTextAreaComponent,
   AppSelectComponent,
+  // AppInputPasswordComponent,
+  // AppRadioComponent,
+  // AppDatePickerComponent,
+  // AppTextAreaComponent,
 ];
 
 @NgModule({

@@ -1,20 +1,12 @@
-<h3>{{ field?.label }}</h3>
-
-<section>
-  <mat-checkbox
-    class="example-margin"
-    [required]="field?.required"
-    [formControl]="control"
-    *ngFor="let option of field?.options"
-    [disabled]="field?.disabled"
-    [value]="option.value"
-    >{{ option.label }}</mat-checkbox
+<mat-checkbox
+  color="primary"
+  [formControl]="control"
+  [required]="field?.required">
+  {{ field.label || 'Check me!' }}
+  <a
+    href="javascript:void(0)"
+    (click)="field.linkClicked()"
+    *ngIf="field.labelLink"
+    >{{ field.labelLink }}</a
   >
-  <mat-error *ngIf="field?.errors?.length">
-    <ng-container *ngFor="let error of field.errors">
-      <ng-template [ngIf]="control.hasError(error.type)">
-        {{ error.message }}
-      </ng-template>
-    </ng-container>
-  </mat-error>
-</section>
+</mat-checkbox>

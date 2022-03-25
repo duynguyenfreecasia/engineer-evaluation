@@ -1,18 +1,24 @@
+import { TemplateRef } from '@angular/core';
 import { FormGroup, ValidatorFn } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormFieldInputType } from '../enums/form-field-input-type.enum';
 import { FormFieldType } from '../enums/form-field-type.enum';
 import { FormObservables } from './form-observables.interface';
-import { FormSelect } from './form-select.interface';
 
-export interface FormField extends FormSelect, FormObservables {
+export interface FormFieldError {
+  // Type can be one of required, email, maxLength...
+  type: string;
+
+  // Message to show if error existed
+  message: string;
+}
+
+export interface BaseFormField extends FormObservables {
   key: string;
 
-  type: FormFieldType;
+  formFieldId?: string;
 
-  /**
-   * Set `input[type]` when type is FormFieldType.INPUT
-   */
-  inputType?: FormFieldInputType;
+  type: FormFieldType;
 
   classes?: string;
 
@@ -22,53 +28,102 @@ export interface FormField extends FormSelect, FormObservables {
 
   placeholder?: string;
 
-  minLength?: number;
-
-  maxLength?: number;
-
-  pattern?: string;
+  validators?: ValidatorFn | ValidatorFn[] | null;
 
   initValue?: any;
-
-  validators?: ValidatorFn | ValidatorFn[] | null;
 
   required?: boolean;
 
   disabled?: boolean;
 
-  prefix?: string;
-
-  suffix?: string;
-
   hidden?: boolean;
 
-  errors?: {
-    // Type can be one of required, email, maxLength...
-    type: string;
-    // Message to show if error existed
-    message: string;
-  }[];
+  errors?: FormFieldError[];
 
   icon?: string;
-
-  iconImage?: string;
-
-  limitImages?: number;
-
-  multiple?: boolean;
-
-  title?: string;
-
-  changeEvent?: ($event: any, form?: FormGroup) => void;
-
-  click?: () => void;
 
   /**
    * Use in case of FormFieldType.ROW
    */
   fields?: FormField[];
 
+  valueId?: string;
+}
+
+export interface InputFormField extends BaseFormField {
+  /**
+   * Set `input[type]` when type is FormFieldType.INPUT
+   */
+  inputType?: FormFieldInputType;
+
+  minLength?: number;
+
+  maxLength?: number;
+
+  pattern?: string;
+
+  suffix?: string;
+
+  // extended config for inputType = number
+  min?: number;
+  max?: number;
+}
+
+export interface TextareaFormField extends BaseFormField {
+  maxrows?: number;
+
+  minLength?: number;
+
+  maxLength?: number;
+
+  isEditor?: boolean;
+}
+
+export interface DropDownFormField extends BaseFormField {
+  /**
+   * Set options for dropdown when type is FormFieldType.DROPDOWN
+   */
+  options?: { value: string; label: string }[];
+
+  multiple?: boolean;
+
+  open?: boolean;
+}
+
+export interface RadioFormField extends BaseFormField {
+  /**
+   * Set group radio-buttons
+   */
+  options?: { value: string; label: string; disabled?: boolean }[];
+
+  /**
+   * Whether the direction for radio-buttons. Defaults to 'row'
+   */
+  flexDirection?: 'column' | 'row';
+}
+
+export interface PasswordFormField extends BaseFormField {
+  minLength?: number;
+
+  maxLength?: number;
+
+  pattern?: string;
+
+  suffix?: string;
+
+  inputType?: FormFieldInputType;
+  /**
+   * Use in case on handle icon FormFieldType.PASSWORD & add icon
+   */
   handleIcon?: (field?: any) => void;
 
   maxrows?: number;
 }
+
+export type FormField =
+  | BaseFormField
+  | InputFormField
+  | TextareaFormField
+  | DropDownFormField
+  | RadioFormField
+  | PasswordFormField;
