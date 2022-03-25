@@ -78,36 +78,36 @@ functions:
     memorySize: 128
     events:
       - httpApi:
-          path: /api/getlist
+          path: /engeva/api/getlist
           method: get
   getData:
     handler: api/handler.getData
     memorySize: 128
     events:
       - httpApi:
-          path: /api/get
+          path: /engeva/api/get/{id}
           method: get
   insertRecord:
     handler: api/handler.insertRecord
     memorySize: 128
     events:
       - httpApi:
-          path: /api/insert
+          path: /engeva/api/insert
           method: post
   updateRecord:
     handler: api/handler.updateRecord
     memorySize: 128
     events:
       - httpApi:
-          path: /api/update
+          path: /engeva/api/update/{id}
           method: put
   deleteRecord:
     handler: api/handler.deleteRecord
     memorySize: 128
     events:
       - httpApi:
-          path: /api/delete
-          method: put
+          path: /engeva/api/delete/{id}
+          method: delete
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
@@ -170,3 +170,6 @@ resources:
         StreamSpecification:
           StreamViewType: "NEW_AND_OLD_IMAGES"
         TableName: ${self:provider.environment.DEMO_TABLE}
+
+plugins:
+  - serverless-offline
