@@ -5,8 +5,6 @@ const AWS = require("aws-sdk");
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 AWS.config.setPromisesDependency(require("bluebird"));
 const resHeader  = {
-  "Accept": "*/*",
-  "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "X-Requested-With",
   "Access-Control-Allow-Headers": "Content-Type",
@@ -121,7 +119,6 @@ module.exports.updateRecord = async (event, context, callback) => {
   return dynamoDb.update(dataInfo).promise()
     .then((res) => {
       callback(null, {
-        headers: resHeader,
         statusCode: 200,
         body: JSON.stringify({
           message: `Update Successfully`
