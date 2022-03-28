@@ -1,9 +1,9 @@
 {
   "scripts": {
     "local": "npm install && sls offline",
-    "dev": "npm install --no-dev && sls deploy --config serverless.yml",
-    "stag": "npm install --no-dev && sls deploy --config serverless_stag.yml",
-    "prod": "npm install --no-dev && sls deploy --config serverless_prod.yml"
+    "dev": "npm install --prod && sls deploy --config serverless.yml",
+    "stag": "npm install --prod && sls deploy --config serverless_stag.yml",
+    "prod": "npm install --prod && sls deploy --config serverless_prod.yml"
   },
   "dependencies": {
     "bluebird": "^3.7.2",
