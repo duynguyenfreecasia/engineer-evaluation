@@ -1,6 +1,16 @@
 {
+  "scripts": {
+    "local": "npm install && sls offline",
+    "dev": "npm install --no-dev && sls deploy --config serverless.yml",
+    "stag": "npm install --no-dev && sls deploy --config serverless_stag.yml",
+    "prod": "npm install --no-dev && sls deploy --config serverless_prod.yml"
+  },
   "dependencies": {
     "bluebird": "^3.7.2",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "serverless-offline": "^8.5.0",
+    "aws-sdk": "^2.1100.0"
   }
 }
