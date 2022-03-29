@@ -24,10 +24,10 @@
 ### 3. Deploy
    * Deploy on AWS:
       + `npm run dev`
-      ![](https://i2.paste.pics/f4f09b2793f864bff950af8e8c14c205.png "Server")
+      ![](https://i2.paste.pics/43544c08f018f34f0c299ac135179489.png "Server")
    * Deploy on Local:   
       + `npm run local`
-      ![](https://i2.paste.pics/61726f7c09f52b45235db109d9a24ac5.png "Local")
+      ![](https://i2.paste.pics/75c18f4bd12610d0ccfbb7a435ed1b9d.png "Local")
 ### 4. Done
 
 ### 5. List API After Deploy
