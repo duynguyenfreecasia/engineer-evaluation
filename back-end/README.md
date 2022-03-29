@@ -1,71 +1,83 @@
 # Build CRUD Evaluation
-1. Required
-   1. Install Serverless
-      - npm install -g serverless
-   2. Create Account Serverless
-      1. Register at link https://app.serverless.com/. (Or request Project Manager)
-      2. Create Node HTTP API app on your Dashboard ( Or can request Project Manager) 
-   3. Create Access Key and secret key of AWS
-      1. Get Info follow at link: https://www.serverless.com/framework/docs/providers/aws/guide/credentials
-      2. Setup with serverless config credentials command
-         ` serverless config credentials \
+### 1.Repare
+
+1. Install Serverless:  
+      `npm install -g serverless`
+2. Create Account Serverless (Optional)
+      * Register at [link](https://app.serverless.com/). (Or request Project Manager).
+      * Create Node HTTP API app on your Dashboard ( Or can request Project Manager) .
+3. Create Access Key and secret key of AWS
+      * Get Info follow at [link](https://www.serverless.com/framework/docs/providers/aws/guide/credentials).
+      * <p>Setup with serverless config credentials command.</p>
+      ###
+         serverless config credentials \
          --provider aws \
          --key Access_key_ID \
-         --secret Secret_access_key -o`
-2. Config Source:
-   1. Make copy **serverless.example.yml** on  engineer-evaluation/back-end/demo-service folder to **serverless.yml**
-   2. On serverless.yml file: 
-      1. Change "org" => your org 
-      2. Change "app" => The app name  which created
-      3. Change "service" => your service name (exp: engeva-api)
-3. Deploy
-   1. Deploy on AWS:
-      1. `npm install`
-      2. `sls deploy` (or serverless deploy)
-   2. Deploy on Local:
-      1. `npm install`
-      2. `sls offline`
-4. Done
-5. List API after deploy
+         --secret Secret_access_key -o
+### 2 Config Environment:
+   * Make copy **serverless.example.yml** on  engineer-evaluation/back-end/demo-service folder to **serverless.yml**.
+   * On serverless.yml file: 
+      + Change "org" => your org 
+      + Change "app" => The app name  which created
+      + Change "service" => your service name (exp: engeva-api)
+      + Change "region" => your region (exp: us-west-2)
+###3. Deploy
+   * Deploy on AWS:
+      + `npm run dev`
+      ![](https://i2.paste.pics/f4f09b2793f864bff950af8e8c14c205.png "Server")
+   * Deploy on Local:   
+      + `npm run local`
+      ![](https://i2.paste.pics/61726f7c09f52b45235db109d9a24ac5.png "Local")
+### 4. Done
+
+### 5. List API After Deploy
    
    ``` 
-   API_GATEWAY = https://akvocmd16m.execute-api.us-west-2.amazonaws.com <br />
-   eva_register_id ="e7a82227-dde2-41e2-8f40-16904f4062aa-example"<br /> 
+   API_GATEWAY = https://akvocmd16m.execute-api.us-west-2.amazonaws.com
+   eva_register_id ="e7a82227-dde2-41e2-8f40-16904f4062aa-example" 
    ```
    
-   1. Get List
+   +  Get List
    ```
+    URL: {{API_GATEWAY}}engeva/api/getlist
     METHOD: GET
-   {{API_GATEWAY}}engeva/api/getlist
    ```
-   2. Create
+   + Create
+
    ```
-   METHOD : POST
-   {API_GATEWAY}engeva/api/insert
+    URL: {API_GATEWAY}engeva/api/insert    
+    METHOD: POST  
+```
+   
    params:
+  ```json
    {
        "technicalStrength": "good",
        "workAttitude": "good",
        "technical": ["php","java"]
    }
+```
+   + View       
    ```
-   3. View
+   URL: {{API_GATEWAY}engeva/api/get/{eva_register_id}  
+   METHOD: GET
+```
+   + Update  
    ```
-   METHOD: GET<br />
-   {{API_GATEWAY}engeva/api/get/{eva_register_id}<br />
-   ```
-   4. Update<br />
-   ```
-   METHOD: PUT
-   {{API_GATEWAY}engeva/api/update/{eva_register_id}
-   params: {
+    URL: {{API_GATEWAY}engeva/api/update/{eva_register_id}  
+    METHOD: PUT
+```
+   
+params:
+```json
+    {
        "technicalStrength": "good",
        "workAttitude": "good",
        "technical": ["php","java"]
    }
    ```
-   5. Delete:
+   + Delete:
    ```
-   METHOD: DELETE
-   {{API_GATEWAY}engeva/api/delete/{eva_register_id}
-    ```
+URL: {{API_GATEWAY}engeva/api/delete/{eva_register_id}
+METHOD: DELETE
+```
