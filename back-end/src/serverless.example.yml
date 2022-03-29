@@ -11,10 +11,8 @@
 #
 # Happy Coding!
 
-service: tuanphat
+service: engeva
 # app and org for use with dashboard.serverless.com
-app: tuanphat
-org: tuanphat
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -22,9 +20,10 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   stage: dev
-  region: us-west-2
+  region: ap-northeast-1
+  memorySize: 256
   environment:
     DEMO_TABLE: ${self:service}-${opt:stage, self:provider.stage}
   iam:
@@ -75,35 +74,30 @@ provider:
 functions:
   getList:
     handler: api/handler.getList
-    memorySize: 128
     events:
       - httpApi:
           path: /engeva/api/getlist
           method: get
   getData:
     handler: api/handler.getData
-    memorySize: 128
     events:
       - httpApi:
           path: /engeva/api/get/{id}
           method: get
   insertRecord:
     handler: api/handler.insertRecord
-    memorySize: 128
     events:
       - httpApi:
           path: /engeva/api/insert
           method: post
   updateRecord:
     handler: api/handler.updateRecord
-    memorySize: 128
     events:
       - httpApi:
           path: /engeva/api/update/{id}
           method: put
   deleteRecord:
     handler: api/handler.deleteRecord
-    memorySize: 128
     events:
       - httpApi:
           path: /engeva/api/delete/{id}
@@ -170,6 +164,3 @@ resources:
         StreamSpecification:
           StreamViewType: "NEW_AND_OLD_IMAGES"
         TableName: ${self:provider.environment.DEMO_TABLE}
-
-plugins:
-  - serverless-offline
