@@ -1,5 +1,5 @@
 # Build CRUD Evaluation
-### 1.Repare
+### 1. Require
 
 1. Install Serverless:  
       `npm install -g serverless`
@@ -14,14 +14,14 @@
          --provider aws \
          --key Access_key_ID \
          --secret Secret_access_key -o
-### 2 Config Environment:
+### 2. Config Environment:
    * Make copy **serverless.example.yml** on  engineer-evaluation/back-end/demo-service folder to **serverless.yml**.
    * On serverless.yml file: 
       + Change "org" => your org 
       + Change "app" => The app name  which created
       + Change "service" => your service name (exp: engeva-api)
       + Change "region" => your region (exp: us-west-2)
-###3. Deploy
+### 3. Deploy
    * Deploy on AWS:
       + `npm run dev`
       ![](https://i2.paste.pics/f4f09b2793f864bff950af8e8c14c205.png "Server")
