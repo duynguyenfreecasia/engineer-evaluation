@@ -1,0 +1,6 @@
+<app-table
+  [data]="data"
+  [initColumns]="initColumns"
+  [options]="options"
+  (primaryEmitter)="editRecord($event)"
+  (secondaryEmitter)="deleteRecord($event)"></app-table>

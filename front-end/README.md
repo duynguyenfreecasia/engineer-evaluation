@@ -1,62 +1,27 @@
-# Engineer evaluation FE
+# FrontEnd
 
-### Tech stack
-  
-- [Angular 13][angular]
-- [Angular Material][mat]:  UI component and Angular CDK
-- [CSS preprocessor][scss]: SCSS
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
-[angular]: https://angular.io/
-[mat]: https://material.angular.io/
-[scss]: https://sass-lang.com/guide
+## Development server
 
-### Setting up the development environment 🛠
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-- `git clone https://github.com/techcross-lab/engineer-evaluation.git`
-- `cd engineer-evaluation/front-end`
-- `npm install`
-- `npm start` for starting Angular web application
-- The app should run on `http://localhost:4200/`
+## Code scaffolding
 
-### Build
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
--  `npm run staging`: Bundle and publish project files with domain staging. Files which are generated will be placed inside `dist` folder.
-- `npm run build`: Bundle and publish project files with domain go live. Files which are generated will be placed inside `dist` folder.
+## Build
 
-### High-level design
-#### Principles
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-All components are following:
-- OnPush Change Detection and async pipes: all components use observable and async pipe for rendering data without any single manual subscribe. Only some places are calling subscribe for dispatching an action.
-- SCAMs (single component Angular modules) for tree-shakable components, meaning each component will have a respective module.
-- Guide: https://angular.io/guide/cheatsheet
+## Running unit tests
 
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-### Project structure.
-```
-+-- src
-|   +-- api: API call
-|   +-- app
-  |   +-- infrastructure
-    |   +-- components: base components
-    |   +-- services: services for infrastructure      
-    |   +-- constants: constants for infrastructure
-    |   +-- directives: directives for infrastructure
-    |   +-- interfaces: interfaces for infrastructure
-    |   +-- enums: enums for infrastructure
-    |   +-- utils: utils for infrastructure
-    |   +-- guards: guards for infrastructure
-    |   +-- pipes: pipes for infrastructure
-  |   +-- modules
-    |   +-- form: dynamic form just transfer FormInput is gender form
-    |   +-- module name (***):
-      |   +-- components: list component children module
-      |   +-- services: services for module      
-      |   +-- constants: constants for module
-      |   +-- directives: directives for module
-      |   +-- interfaces: interfaces for module
-      |   +-- enums: enums for module
-      |   +-- routing and module: enums for module
-  |   +-- assets: Static files (such as: *.scss, *.json, *svg, ...) should be stored in this folder.
-+-- index.html 
-```
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
