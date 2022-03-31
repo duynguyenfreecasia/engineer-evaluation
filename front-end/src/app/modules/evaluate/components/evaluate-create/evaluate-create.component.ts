@@ -25,10 +25,12 @@ export class EvaluateCreateComponent extends BaseComponent {
       technical: this.getTechnicalListValue(value),
     };
     console.log(input);
+    this.evaluateCreateService.create(input);
   }
 
   protected override onInit(): void {
     this.formInput = this.evaluateCreateService.geEvaluateCreateFormInput();
+    this.evaluateCreateService.getList();
   }
 
   private getTechnicalListValue(value: any): string[] {
