@@ -152,95 +152,88 @@ export class AppFormComponent extends BaseComponent implements OnChanges {
     if (!valueChangesPipes || valueChangesPipes.length === 0) {
       return observable;
     }
-    if (valueChangesPipes.length === 1) {
-      return observable.pipe(valueChangesPipes[0]);
-    }
-    if (valueChangesPipes.length === 2) {
-      return observable.pipe(valueChangesPipes[0], valueChangesPipes[1]);
-    }
-    if (valueChangesPipes.length === 3) {
-      return observable.pipe(
-        valueChangesPipes[0],
-        valueChangesPipes[1],
-        valueChangesPipes[2]
-      );
-    }
-    if (valueChangesPipes.length === 4) {
-      return observable.pipe(
-        valueChangesPipes[0],
-        valueChangesPipes[1],
-        valueChangesPipes[2],
-        valueChangesPipes[3]
-      );
-    }
-    if (valueChangesPipes.length === 5) {
-      return observable.pipe(
-        valueChangesPipes[0],
-        valueChangesPipes[1],
-        valueChangesPipes[2],
-        valueChangesPipes[3],
-        valueChangesPipes[4]
-      );
-    }
-    if (valueChangesPipes.length === 6) {
-      return observable.pipe(
-        valueChangesPipes[0],
-        valueChangesPipes[1],
-        valueChangesPipes[2],
-        valueChangesPipes[3],
-        valueChangesPipes[4],
-        valueChangesPipes[5]
-      );
-    }
-    if (valueChangesPipes.length === 7) {
-      return observable.pipe(
-        valueChangesPipes[0],
-        valueChangesPipes[1],
-        valueChangesPipes[2],
-        valueChangesPipes[3],
-        valueChangesPipes[4],
-        valueChangesPipes[5],
-        valueChangesPipes[6]
-      );
-    }
-    if (valueChangesPipes.length === 8) {
-      return observable.pipe(
-        valueChangesPipes[0],
-        valueChangesPipes[1],
-        valueChangesPipes[2],
-        valueChangesPipes[3],
-        valueChangesPipes[4],
-        valueChangesPipes[5],
-        valueChangesPipes[6],
-        valueChangesPipes[7]
-      );
-    }
-    if (valueChangesPipes.length === 9) {
-      return observable.pipe(
-        valueChangesPipes[0],
-        valueChangesPipes[1],
-        valueChangesPipes[2],
-        valueChangesPipes[3],
-        valueChangesPipes[4],
-        valueChangesPipes[5],
-        valueChangesPipes[6],
-        valueChangesPipes[7],
-        valueChangesPipes[8]
-      );
-    }
-    if (valueChangesPipes.length > 9) {
-      return observable.pipe(
-        valueChangesPipes[0],
-        valueChangesPipes[1],
-        valueChangesPipes[2],
-        valueChangesPipes[3],
-        valueChangesPipes[4],
-        valueChangesPipes[5],
-        valueChangesPipes[6],
-        valueChangesPipes[7],
-        valueChangesPipes[8],
-        ...valueChangesPipes.slice(9)
-      );
+
+    switch (valueChangesPipes.length) {
+      case 1:
+        return observable.pipe(valueChangesPipes[0]);
+      case 2:
+        return observable.pipe(valueChangesPipes[0], valueChangesPipes[1]);
+      case 3:
+        return observable.pipe(
+          valueChangesPipes[0],
+          valueChangesPipes[1],
+          valueChangesPipes[2]
+        );
+      case 4:
+        return observable.pipe(
+          valueChangesPipes[0],
+          valueChangesPipes[1],
+          valueChangesPipes[2],
+          valueChangesPipes[3]
+        );
+      case 5:
+        return observable.pipe(
+          valueChangesPipes[0],
+          valueChangesPipes[1],
+          valueChangesPipes[2],
+          valueChangesPipes[3],
+          valueChangesPipes[4]
+        );
+      case 6:
+        return observable.pipe(
+          valueChangesPipes[0],
+          valueChangesPipes[1],
+          valueChangesPipes[2],
+          valueChangesPipes[3],
+          valueChangesPipes[4],
+          valueChangesPipes[5]
+        );
+      case 7:
+        return observable.pipe(
+          valueChangesPipes[0],
+          valueChangesPipes[1],
+          valueChangesPipes[2],
+          valueChangesPipes[3],
+          valueChangesPipes[4],
+          valueChangesPipes[5],
+          valueChangesPipes[6]
+        );
+      case 8:
+        return observable.pipe(
+          valueChangesPipes[0],
+          valueChangesPipes[1],
+          valueChangesPipes[2],
+          valueChangesPipes[3],
+          valueChangesPipes[4],
+          valueChangesPipes[5],
+          valueChangesPipes[6],
+          valueChangesPipes[7]
+        );
+      case 9:
+        return observable.pipe(
+          valueChangesPipes[0],
+          valueChangesPipes[1],
+          valueChangesPipes[2],
+          valueChangesPipes[3],
+          valueChangesPipes[4],
+          valueChangesPipes[5],
+          valueChangesPipes[6],
+          valueChangesPipes[7],
+          valueChangesPipes[8]
+        );
+      default:
+        return observable.pipe(
+          valueChangesPipes[0],
+          valueChangesPipes[1],
+          valueChangesPipes[2],
+          valueChangesPipes[3],
+          valueChangesPipes[4],
+          valueChangesPipes[5],
+          valueChangesPipes[6],
+          valueChangesPipes[7],
+          valueChangesPipes[8],
+          ...valueChangesPipes.slice(9)
+        );
     }
   }
 

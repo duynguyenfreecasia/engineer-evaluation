@@ -29,16 +29,18 @@
     <div
       class="form-actions"
       *ngIf="formInput?.primaryButtonLabel || formInput?.secondaryButtonLabel">
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="isPrimaryDisabled()"
-        *ngIf="formInput?.primaryButtonLabel">
-        <span>
-          {{ formInput?.primaryButtonLabel }}
-        </span>
-      </button>
+      <app-local-spinner [componentId]="formInput?.primaryLocalSpinnerId">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="isPrimaryDisabled()"
+          *ngIf="formInput?.primaryButtonLabel">
+          <span>
+            {{ formInput?.primaryButtonLabel }}
+          </span>
+        </button>
+      </app-local-spinner>
 
       <button
         mat-stroked-button

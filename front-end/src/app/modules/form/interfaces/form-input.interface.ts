@@ -8,4 +8,5 @@ export interface FormInput extends FormObservables {
   primaryButtonLabel?: string;
   secondaryButtonLabel?: string;
   skipCheckInvalidForm?: false;
+  primaryLocalSpinnerId?: string;
 }

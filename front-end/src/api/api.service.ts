@@ -17,14 +17,13 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  public createEvaluation(input: EvaluateCreate) {
+  public createEvaluation(input: EvaluateCreate): Observable<Object> {
     const url = `${this.baseUrl}/engeva/api/insert`;
     return this.http.post(url, input);
   }
 
-  private handleError(error: HttpErrorResponse) {
-    console.log('error', error);
-    // return an observable with a user-facing error message
-    return throwError('Internal Error.');
+  public handleError(error: HttpErrorResponse): void {
+    const msg = error.message || error;
+    console.log('error', msg);
   }
 }

@@ -1,6 +1,4 @@
-import { TemplateRef } from '@angular/core';
-import { FormGroup, ValidatorFn } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { ValidatorFn } from '@angular/forms';
 import { FormFieldInputType } from '../enums/form-field-input-type.enum';
 import { FormFieldType } from '../enums/form-field-type.enum';
 import { FormObservables } from './form-observables.interface';
@@ -66,11 +64,12 @@ export interface InputFormField extends BaseFormField {
 
   // extended config for inputType = number
   min?: number;
+
   max?: number;
 }
 
 export interface TextareaFormField extends BaseFormField {
-  maxrows?: number;
+  maxRows?: number;
 
   minLength?: number;
 
@@ -83,7 +82,7 @@ export interface DropDownFormField extends BaseFormField {
   /**
    * Set options for dropdown when type is FormFieldType.DROPDOWN
    */
-  options?: { value: string; label: string }[];
+  options?: Options[];
 
   multiple?: boolean;
 
@@ -117,13 +116,22 @@ export interface PasswordFormField extends BaseFormField {
    */
   handleIcon?: (field?: any) => void;
 
-  maxrows?: number;
+  maxRows?: number;
 }
 
 export interface DatePickerFormField extends BaseFormField {
   minDate?: Date;
 
   maxDate?: Date;
+}
+
+export interface SelectFormField extends BaseFormField {
+  options?: Options[];
+}
+
+export interface Options {
+  label?: string;
+  value?: string | number;
 }
 
 export type FormField =
@@ -133,4 +141,5 @@ export type FormField =
   | DropDownFormField
   | RadioFormField
   | PasswordFormField
-  | DatePickerFormField;
+  | DatePickerFormField
+  | SelectFormField;

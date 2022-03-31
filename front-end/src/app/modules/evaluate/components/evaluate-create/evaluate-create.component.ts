@@ -1,8 +1,13 @@
+import { AppRoutingConstant } from 'src/app/infrastructure/constants/app-routing.constant';
 import { BaseComponent } from 'src/app/infrastructure/components/base-component/base.component';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormInput } from 'src/app/modules/form/interfaces/form-input.interface';
 import { EvaluateCreateService } from '../../services/evaluate-create.service';
 import { EvaluateCreate } from '../../interfaces/evaluate-create.interface';
+import { APIStatus } from 'src/api/enums/api-status.enum';
+import { APIResponse } from 'src/api/interfaces/api-response.interfacte';
+import { Router } from '@angular/router';
+import { LocalSpinnerService } from 'src/app/modules/local-spinner/services/local-spinner.service';
 
 @Component({
   selector: 'app-evaluate-create',
@@ -14,7 +19,11 @@ import { EvaluateCreate } from '../../interfaces/evaluate-create.interface';
 export class EvaluateCreateComponent extends BaseComponent {
   public formInput: FormInput | any;
 
-  constructor(private readonly evaluateCreateService: EvaluateCreateService) {
+  constructor(
+    private readonly router: Router,
+    private readonly localSpinnerService: LocalSpinnerService,
+    private readonly evaluateCreateService: EvaluateCreateService
+  ) {
     super();
   }
 
@@ -24,13 +33,22 @@ export class EvaluateCreateComponent extends BaseComponent {
       workAttitude: value?.workAttitude,
       technical: this.getTechnicalListValue(value),
     };
-    console.log(input);
-    this.evaluateCreateService.create(input);
+
+    this.subscribe(
+      this.localSpinnerService.withLocalSpinner(
+        this.evaluateCreateService.create(input),
+        this.evaluateCreateService.createSpinnerId
+      ),
+      (res: APIResponse) => {
+        if (res && res.message === APIStatus.SUCCESSFULLY) {
+          this.router.navigate(AppRoutingConstant.EVALUATE_COMPLETION);
+        }
+      }
+    );
   }
 
   protected override onInit(): void {
     this.formInput = this.evaluateCreateService.geEvaluateCreateFormInput();
-    this.evaluateCreateService.getList();
   }
 
   private getTechnicalListValue(value: any): string[] {

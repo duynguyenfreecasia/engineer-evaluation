@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from '../../infrastructure/pipes/pipes.module';
+import { LocalSpinnerModule } from '../local-spinner/local-spinner.module';
 import { AppMaterialModule } from './app-material.module';
 import { AppCheckBoxComponent } from './components/checkbox/checkbox.component';
 import { AppDatePickerComponent } from './components/date-picker/date-picker.component';
@@ -30,6 +31,7 @@ const components: Type<any>[] = [
     ReactiveFormsModule,
     PipesModule,
     AppMaterialModule,
+    LocalSpinnerModule,
   ],
   declarations: [components],
   exports: [components],

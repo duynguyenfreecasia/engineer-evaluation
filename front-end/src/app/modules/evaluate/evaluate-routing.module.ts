@@ -1,3 +1,4 @@
+import { EvaluateCompletionComponent } from './components/evaluate-completion/evaluate-completion.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EvaluateCreateComponent } from './components/evaluate-create/evaluate-create.component';
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'create',
         component: EvaluateCreateComponent,
+      },
+      {
+        path: 'completion',
+        component: EvaluateCompletionComponent,
       },
     ],
   },

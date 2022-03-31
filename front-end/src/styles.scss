@@ -50,7 +50,7 @@ picture,
 video,
 canvas,
 svg {
-  display: block;
+  display: flex;
   max-width: 100%;
 }
 
@@ -77,4 +77,8 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+a {
+  cursor: pointer;
 }

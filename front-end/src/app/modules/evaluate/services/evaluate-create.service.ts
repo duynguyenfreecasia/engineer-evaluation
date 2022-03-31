@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { catchError, map, Observable } from 'rxjs';
 import { ApiService } from 'src/api/api.service';
 import { Subscribable } from 'src/app/infrastructure/components/base-component/subscribable';
 import { MessageUtils } from 'src/app/infrastructure/utils/message.utils';
@@ -10,6 +10,7 @@ import { EvaluateCreate } from '../interfaces/evaluate-create.interface';
 
 @Injectable()
 export class EvaluateCreateService extends Subscribable {
+  public readonly createSpinnerId = 'evaluate_create_spinner';
   public readonly technicalList = ['PHP', 'Python', 'Ruby', 'Node', 'Go'];
 
   private readonly technicalOptions = [
@@ -59,7 +60,7 @@ export class EvaluateCreateService extends Subscribable {
         {
           key: 'technicalStrength',
           type: FormFieldType.SELECT,
-          label: 'PHPの技術力はどうでしたか',
+          label: MessageUtils.EvaluateCreate.TechnicalStrength,
           options: this.technicalOptions,
           required: true,
           errors: [
@@ -72,7 +73,7 @@ export class EvaluateCreateService extends Subscribable {
         {
           key: 'workAttitude',
           type: FormFieldType.INPUT,
-          label: '項目2',
+          label: MessageUtils.EvaluateCreate.WorkAttitude,
         },
         {
           key: 'rowCheckbox',
@@ -81,20 +82,29 @@ export class EvaluateCreateService extends Subscribable {
         },
       ],
       primaryButtonLabel: MessageUtils.EvaluateCreate.Button,
+      primaryLocalSpinnerId: this.createSpinnerId,
     };
     return result;
   }
 
-  public getList(): void {
-    this.subscribe(this.apiService.getEvaluation(), res => {
-      console.log(res);
-    });
+  public getList(): Observable<Object> {
+    return this.apiService.getEvaluation().pipe(
+      map(result => result),
+      catchError(error => {
+        this.apiService.handleError(error);
+        throw error;
+      })
+    );
   }
 
-  public create(input: EvaluateCreate): void {
-    this.subscribe(this.apiService.createEvaluation(input), res => {
-      console.log(res);
-    });
+  public create(input: EvaluateCreate): Observable<Object> {
+    return this.apiService.createEvaluation(input).pipe(
+      map(result => result),
+      catchError(error => {
+        this.apiService.handleError(error);
+        throw error;
+      })
+    );
   }
 
   private getTechnicalFormField(): FormField[] {
