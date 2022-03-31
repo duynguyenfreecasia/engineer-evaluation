@@ -5,7 +5,7 @@ import { FormInput } from 'src/app/modules/form/interfaces/form-input.interface'
 import { EvaluateCreateService } from '../../services/evaluate-create.service';
 import { EvaluateCreate } from '../../interfaces/evaluate-create.interface';
 import { APIStatus } from 'src/api/enums/api-status.enum';
-import { APIResponse } from 'src/api/interfaces/api-response.interfacte';
+import { APIResponse } from 'src/api/interfaces/api-response.interface';
 import { Router } from '@angular/router';
 import { LocalSpinnerService } from 'src/app/modules/local-spinner/services/local-spinner.service';
 

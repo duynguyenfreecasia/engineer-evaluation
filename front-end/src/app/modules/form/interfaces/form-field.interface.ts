@@ -1,4 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
+import { Options } from 'src/app/infrastructure/interfaces/common.interface';
 import { FormFieldInputType } from '../enums/form-field-input-type.enum';
 import { FormFieldType } from '../enums/form-field-type.enum';
 import { FormObservables } from './form-observables.interface';
@@ -111,6 +112,7 @@ export interface PasswordFormField extends BaseFormField {
   suffix?: string;
 
   inputType?: FormFieldInputType;
+
   /**
    * Use in case on handle icon FormFieldType.PASSWORD & add icon
    */
@@ -125,13 +127,13 @@ export interface DatePickerFormField extends BaseFormField {
   maxDate?: Date;
 }
 
-export interface SelectFormField extends BaseFormField {
-  options?: Options[];
-}
+export interface CheckboxFormField extends BaseFormField {
+  labelLink?: string;
 
-export interface Options {
-  label?: string;
-  value?: string | number;
+  /**
+   * Use in case of FormFieldType.CHECKBOX have link in label
+   */
+  linkClicked?: () => void;
 }
 
 export type FormField =
@@ -141,5 +143,4 @@ export type FormField =
   | DropDownFormField
   | RadioFormField
   | PasswordFormField
-  | DatePickerFormField
-  | SelectFormField;
+  | DatePickerFormField;
